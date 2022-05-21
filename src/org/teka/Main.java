@@ -1,10 +1,17 @@
 package org.teka;
 
+import java.util.Scanner;
+
 public class Main {
 
     private static final String[] operators = {"\\+", "-", "\\*", "/"};
     private static final String[] ramanNums =
             {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC", "C"};
+
+    public static void main(String[] args) throws Exception {
+        System.out.println(
+                calc(new Scanner(System.in).nextLine()));
+    }
 
     public static String calc(String input) throws Exception {
 
@@ -13,9 +20,9 @@ public class Main {
         int result;
         boolean isRomanA;
         boolean isRomanB;
-        int indexOpr = getIndexOpr(input);          // ищем во входящем выражении математический оператор
+        int indexOpr = getIndexOpr(input);                                // ищем во входящем выражении математический оператор
 
-        if (indexOpr == -1) {                       // если не нашли мат. оператор то бросаем исключение
+        if (indexOpr == -1) {                                             // если не нашли мат. оператор то бросаем исключение
             throw new Exception("строка не является математической операцией");
         }
         else {                                                            // если нашли то
@@ -29,16 +36,16 @@ public class Main {
                 isRomanB = romToAr(nums[1].trim()) != 0;         // проверяем является ли второе число римским
 
                 if (isRomanA && isRomanB) {
-                    a = romToAr(nums[0].trim());                // если оба римские, то конвертируем в арабские и присваеваем переменным
+                    a = romToAr(nums[0].trim());                 // если оба римские, то конвертируем в арабские и присваеваем переменным
                     b = romToAr(nums[1].trim());
                 }
-                else if (!isRomanA && !isRomanB) {             // если же оба арабские, то присваеваем через парсинг
+                else if (!isRomanA && !isRomanB) {              // если же оба арабские, то присваеваем через парсинг
                     a = Integer.parseInt(nums[0].trim());
                     b = Integer.parseInt(nums[1].trim());
-                }                                              // иначе получается, что один операнд римский а другой нет, бросаем исключение
+                }                                               // иначе получается, что один операнд римский а другой нет, бросаем исключение
                 else throw new Exception("используются одновременно разные системы счисления");
 
-                if (a > 10 && b > 10)                          // проверяем чтобы числа на входе были не больше 10, если меньше то считаем
+                if (a > 10 && b > 10)                           // проверяем чтобы числа на входе были не больше 10, если меньше то считаем
                     throw new Exception("Калькулятор должен принимать на вход числа от 1 до 10 включительно, не более");
                 else if (indexOpr == 0) result = a + b;
                 else if (indexOpr == 1) result = a - b;
