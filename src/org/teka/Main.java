@@ -46,13 +46,13 @@ public class Main {
             if (a != 0 && b != 0) isRoman = true;
 
             // проверяем являются ли числа арабскими, если оба арабские, то парсим
-            else if (isNum(A) && isNum(B)) {
+            else if (isDecimal(A) && isDecimal(B)) {
                 a = Integer.parseInt(A);
                 b = Integer.parseInt(B);
                 isRoman = false;
             }
             // если одно число арабское а другое римское бросаем соответствующее исключение
-            else if (a != 0 && isNum(B) || b != 0 && isNum(A)) throw new Exception(excMessages[1]);
+            else if (a != 0 && isDecimal(B) || b != 0 && isDecimal(A)) throw new Exception(excMessages[1]);
 
                 // иначе бросаем общее исключение на несоответствие формату
             else throw new Exception(excMessages[2]);
@@ -77,7 +77,7 @@ public class Main {
      * Вспомогательные методы
      **/
 
-    private static boolean isNum(String str) {
+    private static boolean isDecimal(String str) {
         if (str.isEmpty()) return false;
         for (char c : str.toCharArray()) {
             if (!Character.isDigit(c)) return false;
