@@ -87,11 +87,11 @@ public class Main {
 
     private static int romanToDecimal(String roman) {
         int decimal = 0;
-        String rest = roman;
+        String relic = roman;
         for (int i = 0; i < romanNums.length; i++) {
-            while (rest.startsWith(romanNums[i])) {
+            while (relic.startsWith(romanNums[i])) {
                 decimal += values[i];
-                rest = rest.substring(romanNums[i].length());
+                relic = relic.substring(romanNums[i].length());
             }
         }
         if (roman.equals(decimalToRoman(decimal))) return decimal;
@@ -106,6 +106,6 @@ public class Main {
                 roman.append(romanNums[i]);
             }
         }
-        return String.valueOf(roman);
+        return roman.toString();
     }
 }
